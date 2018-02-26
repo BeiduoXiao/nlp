@@ -581,7 +581,7 @@ def parser(sentence):
 
     
     if len(precise_time_list)==0:
-        message= "没有“具体时间”格式，无法进行nlparsing过程，回邮件给出例句，暂不支持时间模糊查询"
+        message= "Can not find 'specific time', nlp process can not be carried out, please try to follow the example sentence."+"\n"+"example sentence: I want to book a meeting room from 11am to 3pm for 5 people."
     elif len(precise_time_list)==1:
         
         
@@ -600,12 +600,12 @@ def parser(sentence):
             continue_time_list=get_regular_continued_time(sentence)
             
             if len(continue_time_list)==0:
-                message= "未找到持续时间，会议需要开多长？为您预定了一小时，时间不是一小时的话再发邮件"
+                message= "No duration found, how long the meeting lasts? I Booked an hour for you as default, please send me email if it is not correct."
                 endtime=starttime+3600
             elif len(continue_time_list)==1:
                 endtime=starttime+continue_time_list[0]
             else:
-                message= "多个“持续时间”格式，无法进行nlparsing过程，回邮件给出例句"
+                message= "More than one duration found, nlp process can not be carried out, please try to follow the example sentence."+"\n"+"example sentence: I want to book a meeting room from 11am to 3pm for 5 people."
 
             resultdict['starttime']=starttime
             resultdict['endtime']=endtime
@@ -624,18 +624,18 @@ def parser(sentence):
             continue_time_list=get_regular_continued_time(sentence)
             
             if len(continue_time_list)==0:
-                message= "未找到持续时间，会议需要开多长？为您预定了一小时，时间不是一小时的话再发邮件"
+                message= "No duration found, how long the meeting lasts? I Booked an hour for you as default, please send me email if it is not correct."
                 endtime=starttime+3600
             elif len(continue_time_list)==1:
                 endtime=starttime+continue_time_list[0]
             else:
-                message= "多个“持续时间”格式，无法进行nlparsing过程，回邮件给出例句"
+                message= "More than one duration found, nlp process can not be carried out, please try to follow the example sentence."+"\n"+"example sentence: I want to book a meeting room from 11am to 3pm for 5 people."
 
             resultdict['starttime']=starttime
             resultdict['endtime']=endtime
         
         else:
-            message= "有多个“日期”格式，是否产生了跨天查询？"
+            message= "More than one 'date' found, is there a cross-day query? Nlp process can not be carried out, please try to follow the example sentence."+"\n"+"example sentence: I want to book a meeting room from 11am to 3pm for 5 people."
         
     elif len(precise_time_list)==2:
         
@@ -679,10 +679,10 @@ def parser(sentence):
             resultdict['endtime']=endtime 
         
         else:
-            message= "有多个“日期”格式，是否产生了跨天查询？"
+            message= "More than one 'date' found, is there a cross-day query? Nlp process can not be carried out, please try to follow the example sentence."+"\n"+"example sentence: I want to book a meeting room from 11am to 3pm for 5 people."
         
     else:
-        message= "有多个“具体时间”格式，无法进行nlparsing过程，回邮件给出例句"
+        message= "More than one 'specific time' found, nlp process can not be carried out, please try to follow the example sentence."+"\n"+"example sentence: I want to book a meeting room from 11am to 3pm for 5 people."
         
     
     #找楼号
@@ -692,7 +692,7 @@ def parser(sentence):
     elif len(building_list)==1:
         building=building_list[0]
     else:
-        message= "似乎提供了多个楼号，重新发送"
+        message= "More than one 'building number' found, nlp process can not be carried out, please try to follow the example sentence."+"\n"+"example sentence: I want to book a meeting room from 11am to 3pm for 5 people in building A on 7F."
 
     resultdict['building']=building
     
@@ -703,7 +703,7 @@ def parser(sentence):
     elif len(people_list)==1:
         people=people_list[0]
     else:
-        message= "似乎提供了重复的人数信息，重新发送"
+        message= "More than one 'number of participants' found, nlp process can not be carried out, please try to follow the example sentence."+"\n"+"example sentence: I want to book a meeting room from 11am to 3pm for 5 people in building A on 7F."
     resultdict['people']=people
     
     #找楼层
@@ -713,7 +713,7 @@ def parser(sentence):
     elif len(floor_list)==1:
         floor=floor_list[0]
     else:
-        message= "似乎提供了重复的楼层信息，重新发送"
+        message= "More than one 'floor' found, nlp process can not be carried out, please try to follow the example sentence."+"\n"+"example sentence: I want to book a meeting room from 11am to 3pm for 5 people in building A on 7F."
     
     resultdict['floor']=floor
     
