@@ -600,7 +600,7 @@ def parser(sentence):
             continue_time_list=get_regular_continued_time(sentence)
             
             if len(continue_time_list)==0:
-                message= "No duration found, how long the meeting lasts? I Booked an hour for you as default, please send me email if it is not correct."
+                #message= "No duration found, how long the meeting lasts? I Booked an hour for you as default, please send me email if it is not correct."
                 endtime=starttime+3600
             elif len(continue_time_list)==1:
                 endtime=starttime+continue_time_list[0]
@@ -624,7 +624,7 @@ def parser(sentence):
             continue_time_list=get_regular_continued_time(sentence)
             
             if len(continue_time_list)==0:
-                message= "No duration found, how long the meeting lasts? I Booked an hour for you as default, please send me email if it is not correct."
+                #message= "No duration found, how long the meeting lasts? I Booked an hour for you as default, please send me email if it is not correct."
                 endtime=starttime+3600
             elif len(continue_time_list)==1:
                 endtime=starttime+continue_time_list[0]

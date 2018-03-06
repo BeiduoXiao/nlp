@@ -18,7 +18,7 @@ class check:
                 sentence=item['Subject']
                 people=item['From']
                 
-                reply='#########################################'+'\n'+'roomid roomname floor maxpeople building'+'\n'+'#########################################'+'\n'+connect_database.select_database(sentence)
+                reply=connect_database.select_database(sentence)
                 #回复邮件
                 smtp.send_mail(people,'Please choose the proper meeting room',reply)
                 

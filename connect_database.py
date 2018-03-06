@@ -71,24 +71,15 @@ def select_database(sentence):
                     cur.execute("select * from room where roomid not in (select roomid from event where (starttime>=%s and starttime<=%s) or (endtime>=%s and endtime<=%s)) and floor=%s and maxpeople>=%s and building=%s order by maxpeople asc",(resultdict['starttime'],resultdict['endtime'],resultdict['starttime'],resultdict['endtime'],resultdict['floor'],resultdict['people'],resultdict['building']))
                     rows=cur.fetchall()
         
-        
-        
-        strow_list=[]
-        
+        reply_rowdic_list=[]
         for row in rows:
-            
-            convert_str_row=[]
-            
-            for item in row:
-                item=str(item)
-                convert_str_row.append(item)
-            
-            strow=" ".join(convert_str_row)
-            strow_list.append(strow)
+            reply_rowdic={'roomid':row[0],'roomname':row[1],'floor':row[2],'maxpeople':row[3],'building':row[4]}
+            reply_rowdic_list.append(reply_rowdic)
         
-        reply="\n".join(strow_list)
+        reply=reply_rowdic_list
+    
         
-    #有默认值，又查数据库又回信    
+    #有默认值，又查数据库又回信（本分支实际上没有用到）    
     else:
         
         if resultdict['building']=="NULL":
@@ -167,23 +158,25 @@ def select_database(sentence):
 
 if __name__ == '__main__':
     sentencelist=[]
-    sentencelist.append("Hi, could you help me book a meeting room with at least 6 seats ?")
-    sentencelist.append("Hi, I want to book a meeting room at 11 am for 4 people")
-    sentencelist.append("We will have an one hour meeting at 4pm for six people.")
-    sentencelist.append("I want to book a meeting room at 11am for 2 hours for 25 minutes(wrong expression)")
-    sentencelist.append("any meetingroom available this friday 4pm?")
-    sentencelist.append("I'd LIKE to book a room @ 4:30pm next monday for 20 minutes")
-    sentencelist.append("book @5pm tomorrow for 1 hour for 30 minutes(wrong expression)")
+    #sentencelist.append("Hi, could you help me book a meeting room with at least 6 seats ?")
+    #sentencelist.append("Hi, I want to book a meeting room at 11 am for 4 people")
+    #sentencelist.append("We will have an one hour meeting at 4pm for six people.")
+    #sentencelist.append("I want to book a meeting room at 11am for 2 hours for 25 minutes(wrong expression)")
+    #sentencelist.append("any meetingroom available this friday 4pm?")
+    #sentencelist.append("I'd LIKE to book a room @ 4:30pm next monday for 20 minutes")
+    #sentencelist.append("book @5pm tomorrow for 1 hour for 30 minutes(wrong expression)")
     sentencelist.append("book at 11:30 am today...tomorrow(wrong expression)")
-    sentencelist.append("I want to book a meeting room from 11am to 3pm for 5 people.")
-    sentencelist.append("I want to book a meeting room 3pm-5pm tomorrow")
+    #sentencelist.append("I want to book a meeting room from 11am to 3pm for 5 people.")
+    #sentencelist.append("I want to book a meeting room 3pm-5pm tomorrow")
     
     for sentence in sentencelist:
         print sentence
         print "#########################################"
         print "roomid roomname floor maxpeople building"
         print "#########################################"
-        print select_database(sentence)
-        print "\n"
+        if type(select_database(sentence))==str:
+            print 'yes'
+        else:
+            print 'no'
 
 
