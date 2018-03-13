@@ -14,7 +14,7 @@ def select_database(sentence):
     except ImportError:
         print "requires psycopg2 nlparser"
 
-    conn = psycopg2.connect(database="meet", user="postgres", password="Pwcwelcome26", host="localhost", port="5432")
+    conn = psycopg2.connect(database="meeting", user="postgres", password="pwcwelcome326", host="localhost", port="5432")
     cur = conn.cursor()    
     reply="null"
     resultdict=nlparser.parser(sentence)[0]

@@ -54,7 +54,7 @@ def send_mail(to_list,sub,content):
         rowhtmlist=[]
 
         for row in content:
-            rowhtml='<tr><td align="center"> %s</td><td align="center"> %s</td><td align="center"> %s</td><td align="center"> %s</td><td align="center"> %s</td></tr>'%(row['roomid'],row['roomname'],row['building'],row['floor'],row['maxpeople'])
+            rowhtml='<tr><td align="center"> %s</td><td align="center"> <a href="https://calendar.google.com/calendar/r" target="_blank">%s</a></td><td align="center"> %s</td><td align="center"> %s</td><td align="center"> %s</td></tr>'%(row['roomid'],row['roomname'],row['building'],row['floor'],row['maxpeople'])
             rowhtmlist.append(rowhtml)
 
         #生成表格部分的html
